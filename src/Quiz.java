@@ -16,13 +16,13 @@ public class Quiz {
 //Pocitat cas
 //Kategoria – P3-P7
 
-    public class Main {
+    public static class Main {
         public static void main(String[] args) {
             //String requiredCategory = "00";
             String category = "00";
-            boolean isvalid = true;
+            //boolean isvalid = true;
             String[] yourAnswers = new String[15];
-            int countdown = 3600;
+           // int countdown = 3600;
             Set<String> allowedCategories = Set.of("P3", "P4", "P5", "P6", "P7");
             Scanner scan = new Scanner(System.in);
             while (true) {

@@ -36,6 +36,8 @@ public class GetURL {
     public URL getUrlVysledky() {
         return urlVysledky;
     }
+
+
 }
 
 

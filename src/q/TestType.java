@@ -1,6 +1,4 @@
 package q;
-//package sources;
-
 
 import java.util.Scanner;
 import java.util.Set;
@@ -29,20 +27,11 @@ public class TestType {
         }
         fileNameTest = testType.toUpperCase() + "_zadanie.txt";
         fileNameEvaluation = testType.toUpperCase() + "_vysledky.txt";
-        System.out.println("fileNameTest: "+ fileNameTest);
-        System.out.println("fileNameEvaluation: "+ fileNameEvaluation);
-
     }
-//    public TestType(String fileNameTest, String fileNameEvaluation) {
-//        this.fileNameTest = fileNameTest;
-//        this.fileNameEvaluation = fileNameEvaluation;
-//    }
 
     public String getFileNameTest() {
         return fileNameTest;
     }
-
-
     public String getFileNameEvaluation() {
         return fileNameEvaluation;
     }

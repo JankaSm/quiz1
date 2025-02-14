@@ -1,7 +1,5 @@
 package q;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,57 +7,36 @@ import java.util.Scanner;
 public class Quiz {
 
     public static class Main {
-        public static void main(String[] args) {
-            TestType testType = new TestType();
-            testType.TestType();
-            GetURL getURL = new GetURL(testType);
-            URL testFileURL = getURL.getUrlZadanie();
-            URL evaluationFileURL = getURL.getUrlVysledky();
 
+        public static void main(String[] args) {
+
+            TestType testType = new TestType();
+            testType.scanTestType();
+
+            GetURL getURL = new GetURL(testType);
             CorrectAnswers correctAnswers = new CorrectAnswers(getURL);
-            //Test test = new Test(getURL);
+            LoadQuestions loadQuestions = new LoadQuestions(getURL);
             Scanner scan = new Scanner(System.in);
             List<String> answers = new ArrayList<>();
-                        LoadQuestions loadQuestions = new LoadQuestions(getURL);
-            ScanAnswer scanAnswer = new ScanAnswer(answers,scan);
-            long startTime = System.currentTimeMillis();
-//            for (String loadQuestion : loadQuestions.getLoadQuestions()) {
-//                System.out.println(loadQuestion);
-//            }
-//            long endTime = System.currentTimeMillis();
-//            long testDuration = (endTime - startTime) / 1000 / 60;
-//            System.out.println("Test ti trval: " + testDuration + " min.");
+            ScanAnswer scanAnswers = new ScanAnswer(answers, scan);
 
-            //System.out.println("Počet otázok: " + loadQuestions.getLoadQuestions().size());
-
-//            // Výpis otázok
-            for (int i = 0; i < loadQuestions.getLoadQuestions().size(); i++) {
-                if (i == 0) {
-                    System.out.println(loadQuestions.getLoadQuestions().get(i));
-                    //                    System.out.println("Hlavička: ");
-//                    System.out.println(questions.get(i));
-                    System.out.println();
-//                    System.out.println();
-//                    // Zaznamenanie začiatku testu
-//                    startTime = System.currentTimeMillis();
-                } else if (i > 0) {
-//                    System.out.println("Otázka " + (i) + ":");
-                   System.out.println(loadQuestions.getLoadQuestions().get(i));
-                   System.out.println();
-                   scanAnswer.scanAnswer();
-//                    yourAnswers[i - 1] = scan.nextLine().trim();
+            Test test = new Test(loadQuestions, scanAnswers);
+            test.startTest();
+            CompareAnswers compareAnswers = new CompareAnswers(correctAnswers, scanAnswers);
+            compareAnswers.countCorrectAnswers();
+            double testTimeMin = test.getTestTimeMin();
+            double testTimeSec = test.getTestTimeSec();
+            if (compareAnswers.getTestPoints() >= 10) {
+                if (testTimeSec > 0) {
+                    testTimeMin +=1;
                 }
+                int pointTime = Math.floorDiv((int) (60 - testTimeMin), 4);
+                System.out.println("Za cas si ziskal " + pointTime + " bodov.");
+                int pointsTotal = pointTime + compareAnswers.getTestPoints();
+                System.out.println("Spolu si ziskal: " + pointsTotal + " bodov.");
+            } else {
+                System.out.println("za test si mal menej bodov ako 10, body za cas sa ti nepocitaju.");
             }
-
-//            for(
-//        String yourAnswer :yourAnswers)
-//
-//        {
-//            System.out.println(yourAnswer);
-//        }
-
         }
-
     }
-
 }

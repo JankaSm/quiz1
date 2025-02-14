@@ -1,29 +1,25 @@
 package q;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ScanAnswer {
-    private List<String> yourAnswers = new ArrayList<>();
-    private Scanner scan;
+    private final List<String> scanAnswers;
+    private final Scanner scan;
 
-    public ScanAnswer(List<String> yourAnswers, Scanner scan) {
-        this.yourAnswers = yourAnswers;
+    public ScanAnswer(List<String> scanAnswers, Scanner scan) {
+        this.scanAnswers = scanAnswers;
         this.scan = scan;
     }
 
-    public List<String> getYourAnswers() {
-        return yourAnswers;
-    }
-
-    public Scanner getScan() {
-        return scan;
+    public List<String> getScanAnswers() {
+        return scanAnswers;
     }
 
     public void scanAnswer(){
         System.out.println("Zadaj odpoved: ");
-        String answer=scan.nextLine();
-        yourAnswers.add(answer);
+        String answer=scan.nextLine().trim().toLowerCase();
+        System.out.println();
+        scanAnswers.add(answer);
     }
 }

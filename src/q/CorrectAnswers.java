@@ -21,11 +21,9 @@ public class CorrectAnswers {
         try {
             URL filePath = getURL.getUrlVysledky();
             File file = new File(filePath.getFile());
-//            List<String> result = new ArrayList<>(); // Na uloženie spracovaných riadkov
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine()) != null) {
-                // Nájdeme prvú medzeru a vezmeme zvyšok riadku
                 int firstSpaceIndex = line.indexOf(' ');
                 if (firstSpaceIndex != -1) {
                     result.add(line.substring(firstSpaceIndex + 1).trim());
@@ -34,7 +32,5 @@ public class CorrectAnswers {
         } catch (IOException e) {
             System.err.println("Chyba pri čítaní súboru: " + e.getMessage());
         }
-        // Konverzia zoznamu na pole String[]
-        String[] processedLines = result.toArray(new String[0]);
     }
 }

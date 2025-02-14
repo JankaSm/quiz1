@@ -5,18 +5,17 @@ import java.util.Set;
 
 public class TestType {
     private String testType;
-    private String fileNameTest;
-    private String fileNameEvaluation;
 
-    public void TestType() {
+    public void scanTestType() {
         Scanner scan = new Scanner(System.in);
         Set<String> allowedCategories = Set.of("P3", "P4", "P5", "P6", "P7");
 
         while (true) {
             try {
                 System.out.println("Define your category (P3, P4, P5, P6, P7): ");
-                this.testType = scan.nextLine().trim();
-                if (allowedCategories.contains(testType.toUpperCase())) {
+                testType = scan.nextLine().trim().toUpperCase();
+                System.out.println(testType);
+                if (allowedCategories.contains(testType)) {
                     break;
                 } else System.out.println("Category " + testType + " is not allowed.");
 
@@ -25,15 +24,9 @@ public class TestType {
                 scan.nextLine();
             }
         }
-        fileNameTest = testType.toUpperCase() + "_zadanie.txt";
-        fileNameEvaluation = testType.toUpperCase() + "_vysledky.txt";
     }
 
-    public String getFileNameTest() {
-        return fileNameTest;
+    public String getTestType() {
+        return testType;
     }
-    public String getFileNameEvaluation() {
-        return fileNameEvaluation;
-    }
-
 }
